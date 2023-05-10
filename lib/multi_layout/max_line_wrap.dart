@@ -157,7 +157,7 @@ class _MaxLineWrapDelegate extends SizedMultiChildLayoutDelegate {
       }
     }
 
-    return Size(size.width, boxHeight);
+    return Size(size.width, boxHeight - runSpacing);
   }
 
   /// 组装每个子项的信息
@@ -189,7 +189,7 @@ class _MaxLineWrapDelegate extends SizedMultiChildLayoutDelegate {
       var element = idList[i];
 
       if (element == _kMoreTag) {
-        if (!isHideMore) {
+        if (!isHideMore && hasMore) {
           final item = {
             'id': element,
             'size': moreSize,
@@ -211,16 +211,19 @@ class _MaxLineWrapDelegate extends SizedMultiChildLayoutDelegate {
             isShowChild = false;
             isHideMore = true;
             // 插入拼接子项
-            final item = {
-              'id': _kMoreTag,
-              'size': moreSize,
-              'show': true,
-            };
-            if (groups['$line'] is List) {
-              groups['$line']?.add(item);
-            } else {
-              groups['$line'] = [item];
+            if (hasMore) {
+              final item = {
+                'id': _kMoreTag,
+                'size': moreSize,
+                'show': true,
+              };
+              if (groups['$line'] is List) {
+                groups['$line']?.add(item);
+              } else {
+                groups['$line'] = [item];
+              }
             }
+
             // 换行（这里换行是为了容错最高item不在显示行中，导致计算错误）
             line += 1;
             x = 0;

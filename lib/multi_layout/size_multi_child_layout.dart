@@ -223,8 +223,8 @@ abstract class SizedMultiChildLayoutDelegate extends MultiChildLayoutDelegate {
   ///
   /// By default, attempts to size the box to the biggest size
   /// possible given the constraints.
-  @override
-  Size getSize(BoxConstraints constraints) => constraints.biggest;
+  // @override
+  // Size getSize(BoxConstraints constraints) => constraints.biggest;
 
   /// Override this method to lay out and position all children given this
   /// widget's size.
@@ -240,13 +240,13 @@ abstract class SizedMultiChildLayoutDelegate extends MultiChildLayoutDelegate {
   /// This should compare the fields of the current delegate and the given
   /// `oldDelegate` and return true if the fields are such that the layout would
   /// be different.
-  @override
-  bool shouldRelayout(covariant MultiChildLayoutDelegate oldDelegate);
+  // @override
+  // bool shouldRelayout(covariant MultiChildLayoutDelegate oldDelegate);
 
   /// Override this method to include additional information in the
   /// debugging data printed by [debugDumpRenderTree] and friends.
   ///
   /// By default, returns the [runtimeType] of the class.
-  @override
-  String toString() => objectRuntimeType(this, 'MultiChildLayoutDelegate');
+  // @override
+  // String toString() => objectRuntimeType(this, 'MultiChildLayoutDelegate');
 }
